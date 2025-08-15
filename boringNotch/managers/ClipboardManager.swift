@@ -34,7 +34,6 @@ class ClipboardManager {
         }
         
         // Also mark as most recent in history
-        history.removeAll { $0.id == item.id }
         history.insert(item, at: 0)
     }
     

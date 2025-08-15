@@ -28,6 +28,7 @@ struct NotchClipboardHistoryView: View {
                                 item: item,
                                 isActive: item.id == viewModel.activeItemID,
                                 onCopy: {
+                                    viewModel.delete(item)
                                     copyToClipboard(item)
                                     viewModel.setActiveItem(item)
                                 },
