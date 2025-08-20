@@ -30,6 +30,7 @@ struct ContentView: View {
     @State private var gestureProgress: CGFloat = .zero
 
     @State private var haptics: Bool = false
+    @StateObject private var clipboardViewModel = ClipboardViewModel()
 
     @Namespace var albumArtNamespace
 
@@ -284,7 +285,7 @@ struct ContentView: View {
                     case .shelf:
                         NotchShelfView()
                     case .clipboard:
-                        NotchClipboardHistoryView(viewModel: ClipboardViewModel())
+                        NotchClipboardHistoryView(viewModel: clipboardViewModel)
                     }
                 }
             }

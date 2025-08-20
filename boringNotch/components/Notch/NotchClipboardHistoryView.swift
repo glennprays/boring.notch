@@ -29,7 +29,7 @@ struct NotchClipboardHistoryView: View {
                                 isActive: item.id == viewModel.activeItemID,
                                 onCopy: {
                                     viewModel.delete(item)
-                                    copyToClipboard(item)
+                                    viewModel.copyToClipboard(item)
                                     viewModel.setActiveItem(item)
                                 },
                                 onDelete: {

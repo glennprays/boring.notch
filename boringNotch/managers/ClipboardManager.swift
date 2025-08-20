@@ -6,7 +6,9 @@ class ClipboardManager {
     
     private let pasteboard = NSPasteboard.general
     private var changeCount: Int
-    private var history: [ClipboardItem] = []
+    private var timer: Timer?
+    
+    @Published private(set) var history: [ClipboardItem] = []
     
     private init() {
         changeCount = pasteboard.changeCount
@@ -39,7 +41,9 @@ class ClipboardManager {
     
     // Start monitoring for new clipboard content
     func startMonitoring() {
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+        timer?.invalidate()
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
             self.checkForNewContent()
         }
     }
