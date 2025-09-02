@@ -38,6 +38,7 @@ struct ContentView: View {
 
     @Default(.showNotHumanFace) var showNotHumanFace
     @Default(.useModernCloseAnimation) var useModernCloseAnimation
+    @Default(.transparentNotch) private var transparentNotch
 
     private let extendedHoverPadding: CGFloat = 30
     private let zeroHeightHoverPadding: CGFloat = 10
@@ -54,7 +55,11 @@ struct ContentView: View {
                         : cornerRadiusInsets.closed.bottom
                 )
                 .padding([.horizontal, .bottom], vm.notchState == .open ? 12 : 0)
-                .background(.black)
+                .background(
+                    vm.notchState == .open
+                        ? .black
+                    : (transparentNotch ? .clear : .black)
+                )
                 .mask {
                     ((vm.notchState == .open) && Defaults[.cornerRadiusScaling])
                         ? NotchShape(

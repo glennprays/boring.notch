@@ -157,6 +157,9 @@ struct GeneralSettings: View {
                     NotificationCenter.default.post(
                         name: Notification.Name.showOnAllDisplaysChanged, object: nil)
                 }
+                Defaults.Toggle(key: .transparentNotch) {
+                    Text("Make Notch transparent")
+                }
                 Picker("Show on a specific display", selection: $coordinator.preferredScreen) {
                     ForEach(screens, id: \.self) { screen in
                         Text(screen)
